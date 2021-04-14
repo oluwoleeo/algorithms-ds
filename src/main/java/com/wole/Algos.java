@@ -1,5 +1,6 @@
 package com.wole;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Algos {
@@ -269,7 +270,31 @@ public class Algos {
         return arrayToSort;
     }
 
-    /*public static int[] BubbleSort2(int... list) {
+    public static int BinarySearch(int element, int... arrayToSearch){
+        Arrays.sort(arrayToSearch);
+
+        int len = arrayToSearch.length;
+        int low = 0, high = len - 1;
+        int mid = (low + high)/2;
+
+        while (mid >= low){
+            if (arrayToSearch[mid] < element){
+                low = mid + 1;
+            }
+            else if (arrayToSearch[mid] > element){
+                high = mid - 1;
+            }
+            else{
+                return mid;
+            }
+
+            mid = (low + high)/2;
+        }
+
+        return -1;
+    }
+
+    /* public static int[] BubbleSort2(int... list) {
         boolean needNextPass = true;
         int noOfSwaps = 0;
 
