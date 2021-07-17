@@ -1,12 +1,19 @@
 package com.wole;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class Algos {
 
     public static void main(String[] args) {
 	// write your code here
+        UseFoo useFoo = new UseFoo();
+        Foo foo = parameter -> parameter + " from Lambda";
+        String result = useFoo.add("Message", foo);
+
+        System.out.println(result);
         // System.out.println(FibonacciDP(20));
         /* for(int elem: BubbleSort(new int[]{5,25,64,71,17,22,100,99,3,2})){
             System.out.printf("%d ", elem);
@@ -39,9 +46,9 @@ public class Algos {
         System.out.println(newCircularList.delete(2));
         IterateCircularList(newCircularList);
         System.out.println();
-        System.out.println(newCircularList.getLength()); */
+        System.out.println(newCircularList.getLength());
 
-        /* DoublyLinkedList<Integer> newDoubleList = new DoublyLinkedList<>();
+        DoublyLinkedList<Integer> newDoubleList = new DoublyLinkedList<>();
 
         newDoubleList.InsertAtBeginning(5);
         newDoubleList.InsertAtBeginning(4);
@@ -69,9 +76,9 @@ public class Algos {
         System.out.println(newDoubleList.GetLength());
         System.out.println(newDoubleList.GetNode(5).GetData());
         System.out.println(newDoubleList.GetNode(8));
-        System.out.println(newDoubleList.GetPos(54)); */
+        System.out.println(newDoubleList.GetPos(54));
 
-        SinglyLinkedList<Integer> newSingleList = new SinglyLinkedList<>();
+        SinglyLinkedList<Integer> newSingleList = new SinglyLinkedList<Integer>();
         newSingleList.Insert(0, 6);
         newSingleList.Insert(0, 1);
         newSingleList.Insert(1, 7);
@@ -90,7 +97,7 @@ public class Algos {
         IterateList(newSingleList);
         System.out.println();
         System.out.println(newSingleList.GetLength());
-       /*  System.out.println("Delete from beginning");
+        System.out.println("Delete from beginning");
         System.out.println(newSingleList.DeleteFromBeginning());
         IterateList(newSingleList);
         System.out.println();
@@ -292,6 +299,41 @@ public class Algos {
         }
 
         return -1;
+    }
+
+    public static List<Integer> mergeArrays(List<Integer> a, List<Integer> b) {
+        // Write your code here
+        List<Integer> al = new ArrayList<>();
+        int aIndex = 0;
+        int bIndex = 0;
+        for (int i = 0; i < a.size(); i++){
+            if (bIndex < b.size() && i < a.size()){
+                if (a.get(i)< b.get(bIndex)){
+                    al.add(a.get(i));
+                    aIndex++;
+                }
+                else if (a.get(i)>= b.get(bIndex)){
+                    al.add(b.get(bIndex));
+                    bIndex++;
+                    i--;
+                }
+            }
+            else if(bIndex == b.size()-1){
+                al.add(a.get(aIndex));
+                aIndex++;
+            }
+        }
+
+        return al;
+    }
+
+    public static int Pascal(int Row, int Col){
+        if (Col==Row || Col == 0){
+            return 1;
+        }
+        else{
+            return Pascal(Row - 1, Col) + Pascal(Row - 1, Col-1);
+        }
     }
 
     /* public static int[] BubbleSort2(int... list) {
